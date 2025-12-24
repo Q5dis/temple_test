@@ -51,8 +51,16 @@
         <div id="dictionary-screen" class="screen">
             <h1>동자승 사전</h1>
             <p class="dictionary-subtitle">절에 사는 10가지 동자승들을 만나보세요</p>
-            <div id="dictionary-grid"></div>
+            <div id="dictionary-list"></div>
             <button onclick="backToHome()" class="btn-primary">홈으로</button>
+        </div>
+
+        <!-- 동자승 상세 화면 -->
+        <div id="detail-screen" class="screen">
+            <img id="detail-image" src="" alt="동자승 이미지" class="result-image">
+            <h1 id="detail-type"></h1>
+            <div id="detail-content"></div>
+            <button onclick="backToDictionary()" class="btn-primary">사전으로 돌아가기</button>
         </div>
     </div>
 

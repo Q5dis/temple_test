@@ -348,46 +348,47 @@ function saveAsImage() {
     });
 }
 
-// 동자승 사전 표시
+// 동자승 사전 표시 (리스트 형태)
 function showDictionary() {
     document.getElementById('start-screen').classList.remove('active');
     document.getElementById('result-screen').classList.remove('active');
+    document.getElementById('detail-screen').classList.remove('active');
     document.getElementById('dictionary-screen').classList.add('active');
 
-    // 사전 그리드 생성
-    const grid = document.getElementById('dictionary-grid');
-    grid.innerHTML = '';
+    // 사전 리스트 생성
+    const list = document.getElementById('dictionary-list');
+    list.innerHTML = '';
 
     Object.keys(results).forEach(type => {
-        const card = document.createElement('div');
-        card.className = 'dictionary-card';
-
-        const img = document.createElement('img');
-        img.src = typeImages[type];
-        img.alt = type;
-        img.className = 'dictionary-image';
-
-        const title = document.createElement('h3');
-        title.textContent = type;
-
-        const content = document.createElement('p');
-        content.textContent = results[type].content;
-
-        const message = document.createElement('p');
-        message.className = 'dictionary-message';
-        message.textContent = `주지스님의 덕담: "${results[type].message}"`;
-
-        card.appendChild(img);
-        card.appendChild(title);
-        card.appendChild(content);
-        card.appendChild(message);
-
-        grid.appendChild(card);
+        const item = document.createElement('div');
+        item.className = 'dictionary-item';
+        item.textContent = type;
+        item.onclick = () => showDetail(type);
+        list.appendChild(item);
     });
+}
+
+// 동자승 상세 보기
+function showDetail(type) {
+    document.getElementById('dictionary-screen').classList.remove('active');
+    document.getElementById('detail-screen').classList.add('active');
+
+    const detailImage = document.getElementById('detail-image');
+    detailImage.src = typeImages[type];
+
+    document.getElementById('detail-type').textContent = type;
+    document.getElementById('detail-content').textContent = results[type].content;
+}
+
+// 사전으로 돌아가기
+function backToDictionary() {
+    document.getElementById('detail-screen').classList.remove('active');
+    document.getElementById('dictionary-screen').classList.add('active');
 }
 
 // 홈으로 돌아가기
 function backToHome() {
     document.getElementById('dictionary-screen').classList.remove('active');
+    document.getElementById('detail-screen').classList.remove('active');
     document.getElementById('start-screen').classList.add('active');
 }
