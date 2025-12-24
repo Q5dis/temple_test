@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Malgun Gothic', sans-serif;
-    background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+    background: linear-gradient(135deg, #F5F5DC 0%, #E8DCC8 30%, #C9E4C5 70%, #D4E8D4 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;

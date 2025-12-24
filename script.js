@@ -331,7 +331,7 @@ function saveAsImage() {
     const captureElement = document.getElementById('result-capture');
 
     html2canvas(captureElement, {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#F5F5DC',
         scale: 2,
         logging: false,
         useCORS: true,
