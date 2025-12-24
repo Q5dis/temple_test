@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동자승 타입 테스트</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="container">
         <!-- 시작 화면 -->
         <div id="start-screen" class="screen active">
+            <img src="images/home.png" alt="동자승 타입 테스트" class="home-image">
             <h1>동자승 타입 테스트</h1>
             <p>2025년을 마무리하며<br>절의 동자승들을 10가지 종류로 분류하도록 하겠다</p>
             <p>절에 사는 동자승들은 모두 해당 테스트를 실시하고 결과를 공유하도록</p>
             <button onclick="startTest()" class="btn-primary">시작하기</button>
+            <button onclick="showDictionary()" class="btn-tertiary">동자승 사전</button>
         </div>
 
         <!-- 질문 화면 -->
@@ -28,15 +31,28 @@
 
         <!-- 결과 화면 -->
         <div id="result-screen" class="screen">
-            <h1 id="result-type"></h1>
-            <div id="result-content"></div>
-            <div class="user-message">
-                <h3><span id="result-type-name"></span>이 주지스님에게 말했다</h3>
-                <p id="user-input-display"></p>
-                <h3>그러자 주지스님이 답했다</h3>
-                <p id="master-message"></p>
+            <div id="result-capture">
+                <img id="result-image" src="" alt="결과 이미지" class="result-image">
+                <h1 id="result-type"></h1>
+                <div id="result-content"></div>
+                <div class="user-message">
+                    <h3><span id="result-type-name"></span>이 주지스님에게 말했다</h3>
+                    <p id="user-input-display"></p>
+                    <h3>그러자 주지스님이 답했다</h3>
+                    <p id="master-message"></p>
+                </div>
             </div>
+            <button onclick="saveAsImage()" class="btn-secondary">이미지로 저장</button>
             <button onclick="restartTest()" class="btn-primary">다시 하기</button>
+            <button onclick="showDictionary()" class="btn-tertiary">동자승 사전 보기</button>
+        </div>
+
+        <!-- 동자승 사전 화면 -->
+        <div id="dictionary-screen" class="screen">
+            <h1>동자승 사전</h1>
+            <p class="dictionary-subtitle">절에 사는 10가지 동자승들을 만나보세요</p>
+            <div id="dictionary-grid"></div>
+            <button onclick="backToHome()" class="btn-primary">홈으로</button>
         </div>
     </div>
 

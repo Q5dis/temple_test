@@ -86,6 +86,20 @@ const questions = [
     }
 ];
 
+// 타입별 이미지 매핑
+const typeImages = {
+    "몬스터주식회사 동자승": "images/1_몬스터주식회사.png",
+    "음란 동자승": "images/2_음란.png",
+    "예쁜이 동자승": "images/3_예쁜이.png",
+    "월터화이트 동자승": "images/4_월터화이트.png",
+    "주지스님의 애제자": "images/5_주지스님의애제자.png",
+    "똥": "images/6_똥.png",
+    "배치기 동자승": "images/7_배치기.png",
+    "쥐": "images/8_쥐.png",
+    "유튜버 동자승": "images/9_유튜버.png",
+    "절에사는 절냥이": "images/10_절냥이.png"
+};
+
 // 결과 데이터
 const results = {
     "몬스터주식회사 동자승": {
@@ -116,9 +130,9 @@ const results = {
         content: "배 그만쳐",
         message: "배 그만쳐"
     },
-    "돌": {
-        content: "당신은 돌입니다.\n겨울엔 차갑고 여름엔 뜨겁고...\n미네랄...\n음...\n미네랄...",
-        message: "돌..."
+    "쥐": {
+        content: "당신은 쥐입니다. 가끔 눈이 도르륵 빠져나올 정도로\n보글링을 하고 잘때는 딱딱 이를 갈며 발에는 기다란 코가 채이는\n당신은 쥐 입니다.\n축축하고 냄새나는 하수구가 당신의 고향...\n깨닳음을 얻기 위해 절로 떠나온 쥐는 고향과 멀어질수록\n시큰거리는 악취가 그리워 울었지만 그럴수록 자신이 선명해지는 경험을 하게 됩니다.\n2026년, 쥐는 자신 안의 진리와 행복을 마주하게 됩니다.",
+        message: "마라탕을 멀리하라"
     },
     "유튜버 동자승": {
         content: "당신은 유튜버 동자승입니다.\n칼날비 탑유미와 헬리아의 메아리 바이서폿 등\n온갖 기괴한 픽으로 어그로 끌기에 통달한 당신\n유튜브를 한번 해보세요\n성공할거예요",
@@ -276,8 +290,8 @@ function getCombinedType(type1, type2) {
         'evil+chaos': "똥",
         'pervert+evil': "배치기 동자승",
         'evil+pervert': "배치기 동자승",
-        'pervert+angel': "돌",
-        'angel+pervert': "돌",
+        'pervert+angel': "쥐",
+        'angel+pervert': "쥐",
         'chaos+angel': "유튜버 동자승",
         'angel+chaos': "유튜버 동자승",
         'angel+evil': "절에사는 절냥이",
@@ -295,6 +309,10 @@ function showResult() {
     document.getElementById('question-screen').classList.remove('active');
     document.getElementById('result-screen').classList.add('active');
 
+    // 결과 이미지 설정
+    const resultImage = document.getElementById('result-image');
+    resultImage.src = typeImages[resultType];
+
     document.getElementById('result-type').textContent = resultType;
     document.getElementById('result-type-name').textContent = resultType;
     document.getElementById('result-content').textContent = resultData.content;
@@ -305,5 +323,71 @@ function showResult() {
 // 테스트 재시작
 function restartTest() {
     document.getElementById('result-screen').classList.remove('active');
+    document.getElementById('start-screen').classList.add('active');
+}
+
+// 이미지로 저장
+function saveAsImage() {
+    const captureElement = document.getElementById('result-capture');
+
+    html2canvas(captureElement, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        logging: false,
+        useCORS: true,
+        allowTaint: true
+    }).then(canvas => {
+        // Canvas를 이미지로 변환
+        const link = document.createElement('a');
+        link.download = '동자승_타입_테스트_결과.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }).catch(err => {
+        console.error('이미지 저장 실패:', err);
+        alert('이미지 저장에 실패했습니다. 다시 시도해주세요.');
+    });
+}
+
+// 동자승 사전 표시
+function showDictionary() {
+    document.getElementById('start-screen').classList.remove('active');
+    document.getElementById('result-screen').classList.remove('active');
+    document.getElementById('dictionary-screen').classList.add('active');
+
+    // 사전 그리드 생성
+    const grid = document.getElementById('dictionary-grid');
+    grid.innerHTML = '';
+
+    Object.keys(results).forEach(type => {
+        const card = document.createElement('div');
+        card.className = 'dictionary-card';
+
+        const img = document.createElement('img');
+        img.src = typeImages[type];
+        img.alt = type;
+        img.className = 'dictionary-image';
+
+        const title = document.createElement('h3');
+        title.textContent = type;
+
+        const content = document.createElement('p');
+        content.textContent = results[type].content;
+
+        const message = document.createElement('p');
+        message.className = 'dictionary-message';
+        message.textContent = `주지스님의 덕담: "${results[type].message}"`;
+
+        card.appendChild(img);
+        card.appendChild(title);
+        card.appendChild(content);
+        card.appendChild(message);
+
+        grid.appendChild(card);
+    });
+}
+
+// 홈으로 돌아가기
+function backToHome() {
+    document.getElementById('dictionary-screen').classList.remove('active');
     document.getElementById('start-screen').classList.add('active');
 }

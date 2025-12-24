@@ -86,6 +86,29 @@ p {
     transform: translateY(0);
 }
 
+.btn-secondary {
+    background: #48bb78;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    border-radius: 50px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #38a169;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
 .progress {
     width: 100%;
     height: 10px;
@@ -182,6 +205,103 @@ p {
     margin-bottom: 20px;
 }
 
+.home-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+.result-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 15px;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+.btn-tertiary {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    border-radius: 50px;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-tertiary:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-tertiary:active {
+    transform: translateY(0);
+}
+
+.dictionary-subtitle {
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 30px;
+}
+
+#dictionary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.dictionary-card {
+    background: #f9f9f9;
+    border-radius: 15px;
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid #e0e0e0;
+}
+
+.dictionary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-color: #667eea;
+}
+
+.dictionary-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.dictionary-card h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.dictionary-card p {
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 10px;
+    white-space: pre-line;
+}
+
+.dictionary-message {
+    color: #667eea !important;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 15px;
+}
+
 @media (max-width: 600px) {
     .screen {
         padding: 30px 20px;
@@ -193,5 +313,9 @@ p {
 
     h2 {
         font-size: 1.1em;
+    }
+
+    #dictionary-grid {
+        grid-template-columns: 1fr;
     }
 }
